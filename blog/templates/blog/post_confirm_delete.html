@@ -1,0 +1,51 @@
+{% extends "links.html" %}
+
+
+{% block title %}Delete Post{% endblock %}
+
+  
+
+{% block content %}
+
+<div class="site-section" data-aos="fade">
+    <div class="container">
+        {% if messages %}
+
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+<strong>Messages:</strong>
+<ul>
+  {% for message in messages %}
+  <li>{{message}}</li>
+  {% endfor %}
+</ul>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  <span aria-hidden="true">&times;</span>
+</button>
+</div>
+{% endif %}
+      <div class="row justify-content-center mb-5">
+        <div class="col-md-7 text-center border-primary">
+          <h2 class="font-weight-light text-primary">Delete Post</h2>
+          <p class="color-black-opacity-5"> 
+              
+            Are you sure you want to delete the post with name <strong>"{{object.title}}"</strong>?</p>
+        </div>
+      
+
+      </div>
+        
+<form method="post"class="row justify-content-center mb-5"  >
+    {% csrf_token %}
+    <div class="row form-group">
+        <div class="col-md-12">
+          <input type="submit" value="Yes, Delete" class="btn btn-danger btn-md text-white"> 
+          <a href="{% url 'single' object.id object.slug %}" class="btn btn-secondary btn-md text-white"> Cancel
+            </a>
+        </div>
+      </div>
+    </form>
+    
+      </div>
+      </div>
+
+{% endblock %}

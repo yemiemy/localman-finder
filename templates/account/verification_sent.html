@@ -1,0 +1,40 @@
+{% extends "links.html" %}
+
+{% load i18n %}
+
+{% block title %}{% trans "Verify Your E-mail Address" %}{% endblock %}
+
+{% block content %}
+
+<div class="site-section" data-aos="fade">
+    <div class="container">
+        {% if messages %}
+
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+<strong>Messages:</strong>
+<ul>
+  {% for message in messages %}
+  <li>{{message}}</li>
+  {% endfor %}
+</ul>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  <span aria-hidden="true">&times;</span>
+</button>
+</div>
+{% endif %}
+      <div class="row justify-content-center mb-5">
+        <div class="col-md-7 text-center border-primary">
+          <h2 class="font-weight-light text-primary">Verify Your E-mail Address</h2>
+          <p class="color-black-opacity-5"> 
+            {% blocktrans %}We have sent an e-mail to you for verification. Follow the link provided 
+            to finalize the signup process. Please contact us if you do not receive it within a few minutes.{% endblocktrans %}</p>
+            
+        </div>
+        {% if user.is_authenticated %}
+    {% include "account/snippets/already_logged_in.html" %}
+    {% endif %}
+      </div>
+      </div>
+      </div>
+
+{% endblock %}

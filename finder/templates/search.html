@@ -1,0 +1,244 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Search
+{% endblock title %}
+  
+{% block content %}
+{% load static %}
+    <div class="site-blocks-cover overlay" style="background-image: url( {% static 'images/hero_1.jpg' %} );" data-aos="fade" data-stellar-background-ratio="0.5">
+      <div class="container">
+        <div class="row align-items-center justify-content-center text-center">
+
+          <div class="col-md-10">
+            
+            
+            <div class="row justify-content-center mb-4">
+              <div class="col-md-10 text-center">
+                <h1 data-aos="fade-up">Find Nearby <span class="typed-words"></span></h1>
+                <p data-aos="fade-up" class=" w-75 mx-auto">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro provident corporis consequuntur et totam.</p>
+              </div>
+            </div>
+
+            <div class="form-search-wrap p-2" data-aos="fade-up" data-aos-delay="200">
+              <form action=" {% url 'search' %} " method="GET">
+                <div class="row align-items-center">
+                  <div class="col-lg-12 col-xl-4 no-sm-border border-right">
+                    <input type="text" name="name" class="form-control" placeholder="What are you looking for?" required>
+                  </div>
+                  <div class="col-lg-12 col-xl-3 no-sm-border border-right">
+                    <div class="wrap-icon">
+                      <span class="icon icon-room"></span>
+                      <input type="text" name="location" class="form-control" placeholder="Location" required>
+                    </div>
+                    
+                  </div>
+                  <div class="col-lg-12 col-xl-3">
+                    <div class="select-wrap">
+                      <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
+                      <select class="form-control" name="category" id="" >
+                        {% for category in ca %}
+                        <option value="{{ category }}">{{category}}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-lg-12 col-xl-2 ml-auto text-right">
+                    <input type="submit" class="btn text-white btn-primary" value="Search">
+                  </div>
+                  
+                </div>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>  
+
+    
+    
+      
+    
+    <div class="site-section" data-aos="fade">
+      <div class="container">
+        <div class="row justify-content-center mb-5">
+          <div class="col-md-7 text-center border-primary">
+            <h2 class="font-weight-light text-primary">Search Results | Most Visited Places</h2>
+            <p class="color-black-opacity-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+          </div>
+        </div>
+
+        <div class="row">
+            {% if places %}
+            {% for place in places %}
+          <div class="col-md-6 mb-4 mb-lg-4 col-lg-4">
+            
+            <div class="listing-item">
+                {% if place.image %}
+                <div class="listing-image">
+                  <img src=" {{place.image.url}} " alt="bg" class="img-fluid">
+                </div>
+                {% endif %}
+              <div class="listing-item-content">
+                <a href="listings-single.html" class="bookmark" data-toggle="tooltip" data-placement="left" title="Bookmark"><span class="icon-heart"></span></a>
+                <a class="px-3 mb-3 category" href="#">{{place.category}}</a>
+                <h2 class="mb-1"><a href="listings-single.html">{{place.name}}</a></h2>
+                <span class="address">{{place.address}}</span>
+              </div>
+            </div>
+
+          </div>
+          {% endfor %}
+          {% else %}
+          <div class="col-md-6 mb-4 mb-lg-4 col-lg-4">
+            
+            <div class="listing-item">
+                Your search for "{{ name }}" did not match any results.
+            </div>
+
+          </div>
+          {% endif %}
+
+          {% if objects %}
+          {% for place in objects %}
+          <div class="col-md-6 mb-4 mb-lg-4 col-lg-4">
+            
+            <div class="listing-item">
+                {% if place.image %}
+                <div class="listing-image">
+                  <img src=" {{place.image.url}} " alt="bg" class="img-fluid">
+                </div>
+                {% endif %}
+              <div class="listing-item-content">
+                <a href="listings-single.html" class="bookmark" data-toggle="tooltip" data-placement="left" title="Bookmark"><span class="icon-heart"></span></a>
+                <a class="px-3 mb-3 category" href="#">{{place.category}}</a>
+                <h2 class="mb-1"><a href="listings-single.html">{{place.name}}</a></h2>
+                <span class="address">{{place.address}}</span>
+              </div>
+            </div>
+
+          </div>
+          {% endfor %}
+          {% else %}
+          <div class="col-md-6 mb-4 mb-lg-4 col-lg-4">
+            
+            <div class="listing-item">
+                Your search for "{{ location }}" did not match any results.
+            </div>
+
+          </div>
+          {% endif %}
+
+          {% if category %}
+          {% for place in category %}
+          <div class="col-md-6 mb-4 mb-lg-4 col-lg-4">
+            
+            <div class="listing-item">
+                {% if place.image %}
+              <div class="listing-image">
+                <img src=" {{place.image.url}} " alt="bg" class="img-fluid">
+              </div>
+              {% endif %}
+              <div class="listing-item-content">
+                <a href="listings-single.html" class="bookmark" data-toggle="tooltip" data-placement="left" title="Bookmark"><span class="icon-heart"></span></a>
+                <a class="px-3 mb-3 category" href="#">{{place.category}}</a>
+                <h2 class="mb-1"><a href="listings-single.html">{{place.name}}</a></h2>
+                <span class="address">{{place.address}}</span>
+              </div>
+            </div>
+
+          </div>
+          {% endfor %}
+          {% else %}
+          <div class="col-md-6 mb-4 mb-lg-4 col-lg-4">
+            
+            <div class="listing-item">
+                Your search for "{{ cat }}" did not match any results.
+            </div>
+
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row justify-content-center mb-5">
+          <div class="col-md-7 text-center border-primary">
+            <h2 class="font-weight-light text-primary">Popular Categories</h2>
+            <p class="color-black-opacity-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+          </div>
+        </div>
+
+        <div class="row align-items-stretch">
+          <div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
+            <a href="/places/category/Hotels" class="popular-category h-100">
+              <span class="icon mb-3"><span class="flaticon-hotel"></span></span>
+              <span class="caption mb-2 d-block">Hotels</span>
+              <span class="number">4,89</span>
+            </a>
+          </div>
+          <div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
+            <a href="/places/category/Events" class="popular-category h-100">
+              <span class="icon mb-3"><span class="flaticon-microphone"></span></span>
+              <span class="caption mb-2 d-block">Events</span>
+              <span class="number">482</span>
+            </a>
+          </div>
+          <div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
+            <a href="/places/category/Spa" class="popular-category h-100">
+              <span class="icon mb-3"><span class="flaticon-flower"></span></span>
+              <span class="caption mb-2 d-block">Spa</span>
+              <span class="number">194</span>
+            </a>
+          </div>
+          <div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
+            <a href="/places/category/Stores" class="popular-category h-100">
+              <span class="icon mb-3"><span class="flaticon-restaurant"></span></span>
+              <span class="caption mb-2 d-block">Stores</span>
+              <span class="number">1,472</span>
+            </a>
+          </div>
+          <div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
+            <a href="/places/category/Restaurants" class="popular-category h-100">
+              <span class="icon mb-3"><span class="flaticon-cutlery"></span></span>
+              <span class="caption mb-2 d-block">Restaurants</span>
+              <span class="number">439</span>
+            </a>
+          </div>
+          <div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
+            <a href="/places/category/Others" class="popular-category h-100">
+              <span class="icon mb-3"><span class="flaticon-bike"></span></span>
+              <span class="caption mb-2 d-block">Other</span>
+              <span class="number">692</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="row mt-5 justify-content-center tex-center">
+          <div class="col-md-4"><a href="{% url 'index' %}" class="btn btn-block btn-outline-primary btn-md px-5">View All Categories</a></div>
+        </div>
+      </div>
+    </div>
+    
+    {% if user.is_authenticated %}
+    <div></div>
+        {% else %}
+        <div class="py-5 bg-primary">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-7 mr-auto mb-4 mb-lg-0">
+                <h2 class="mb-3 mt-0 text-white">Let's get started. Create your account</h2>
+                <p class="mb-0 text-white">Let your business get the audience it needs.</p>
+              </div>
+              <div class="col-lg-4">
+                <p class="mb-0"><a href="{% url 'account_signup' %}" class="btn btn-outline-white text-white btn-md px-5 font-weight-bold btn-md-block">Sign Up</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+  {% endblock content %}  
+    

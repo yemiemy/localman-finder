@@ -1,0 +1,48 @@
+{% extends 'links.html' %}
+
+{% block title %}
+	Logout
+{% endblock title %}
+{% block out %}
+    active
+  {% endblock out %}
+{% block content %}
+	
+	
+{% load static %}
+{% load i18n %}
+
+
+    
+
+    <div class="site-section" data-aos="fade">
+      <div class="container">
+        <div class="row justify-content-center mb-5">
+          <div class="col-md-7 text-center border-primary">
+            <h2 class="font-weight-light text-primary">Sign Out</h2>
+            <p class="color-black-opacity-5"> Are you sure you want to sign out?</p>
+          </div>
+        </div>
+        <form class="row justify-content-center mb-5"  method="post" action="{% url 'account_logout' %}">
+          {% csrf_token %}
+          {% if redirect_field_value %}
+          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+          {% endif %}
+        
+          <div class="row form-group">
+						<div class="col-md-12">
+						  <input type="submit" value="Sign Out" class="btn btn-primary btn-md text-white"> 
+							</a>
+						</span>
+						</div>
+					  </div>
+          
+        </form>
+        
+      </div>
+    </div>
+
+
+
+
+{% endblock %}

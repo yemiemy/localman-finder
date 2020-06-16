@@ -1,0 +1,7 @@
+Good day, I am {{ fname }} {{ lname }}.
+
+{{message}}
+
+Thank you!
+
+-{{email}}

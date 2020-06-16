@@ -1,0 +1,181 @@
+{% extends 'profile.html' %}
+
+{% block title %}
+    {{request.user.username|capfirst}}
+{% endblock title %}
+
+
+
+{% block top %}
+  {{request.user.username|capfirst}}'s Profile
+{% endblock top %}
+  
+
+{% block content %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-8">
+              {% if messages %}
+  
+				<div class="alert alert-success alert-dismissible fade show" role="alert">
+				  <strong>Messages:</strong>
+				  <ul>
+					{% for message in messages %}
+					<li>{{message}}</li>
+					{% endfor %}
+				  </ul>
+				  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				  </button>
+				</div>
+				  {% endif %}
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title">Edit Profile</h4>
+                  <p class="card-category">Complete your profile</p>
+                </div>
+                <div class="card-body">
+                  <form method="POST" enctype="multipart/form-data">
+                    {% if form.errors %}
+        {% for field in form %}
+        {% for error in field.errors %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <span> {{error}} <span>
+        </div>
+        {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <span> {{error | escape}} <span>
+        </div>
+        {% endfor %}
+        {% endif %}
+                    {% csrf_token %}
+                    <div class="row">
+                      <div class="col-md-5">
+                          <div id="div_id_company" class="form-group bmd-form-group"> 
+                            <label for="id_company" class="bmd-label-floating">
+                            Company
+                        </label> 
+                        <input type="text"  value="{{ request.user.profile.company }}" name="company" maxlength="128" class="textinput textInput form-control" id="id_company">
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                          <div id="div_id_username" class="form-group bmd-form-group is-filled"> 
+                            <label for="id_username" class="requiredField bmd-label-floating">
+                            Username</label>
+                              <input type="text" name="username" value="{{request.user.username}}" maxlength="150" class="textinput textInput form-control" required="" id="id_username"> <small id="hint_id_username" class="form-text text-muted">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</small> 
+                          </div>
+                      </div>
+                      <div class="col-md-4">
+                          <div id="div_id_email" class="form-group bmd-form-group is-filled"> 
+                            <label for="id_email" class="bmd-label-floating">
+                            Email address
+                        </label> 
+                          <input type="email" name="email" value="{{request.user.email}}" maxlength="254" class="emailinput form-control" id="id_email"> 
+                        </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                          <div id="div_id_first_name" class="form-group bmd-form-group is-filled"> 
+                            <label for="id_first_name" class="bmd-label-floating">
+                            First name
+                        </label> 
+                          <input type="text" name="first_name" value="{{request.user.first_name}}" maxlength="30" class="textinput textInput form-control" id="id_first_name"> 
+                        </div> 
+                        </div>
+                      <div class="col-md-6">
+                          <div id="div_id_last_name" class="form-group bmd-form-group is-filled"> 
+                            <label for="id_last_name" class="bmd-label-floating">
+                            Last name
+                        </label>
+                          <input type="text" name="last_name" value="{{request.user.last_name}}" maxlength="150" class="textinput textInput form-control" id="id_last_name"> 
+                        </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                          <div id="div_id_image" class=""> 
+                            <label for="id_image" class=" requiredField">
+                            Image<span class="asteriskField">*</span> </label> 
+                                Currently: <a href="{{request.user.profile.image.url}}">{{request.user.profile.image}}</a><br>
+                            Change:
+                            <input type="file" name="image" accept="image/*" class="clearablefileinput form-control-file" id="id_image"> 
+                          </div> 
+                        </div>
+                        </div>
+                        <br>
+                    <div class="row">
+                      <div class="col-md-12">
+                          <div id="div_id_address" class="form-group bmd-form-group"> 
+                            <label for="id_address" class="bmd-label-floating">
+                            Address
+                        </label> 
+                        <input type="text" value="{{ request.user.profile.address }}" name="address" maxlength="250" class="textinput textInput form-control" id="id_address"> 
+                        </div> 
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                          <div id="div_id_city" class="form-group bmd-form-group"> 
+                            <label for="id_city" class="bmd-label-floating">
+                            City
+                        </label> 
+                        <input type="text" value="{{ request.user.profile.city }}" name="city" maxlength="120" class="textinput textInput form-control" id="id_city"> 
+                        </div> 
+                      </div>
+                      <div class="col-md-6">
+                          <div id="div_id_country" class="form-group bmd-form-group"> 
+                            <label for="id_country" class="bmd-label-floating">
+                            Country
+                        </label> 
+                         <input type="text" value="{{ request.user.profile.country }}" name="country" maxlength="120" class="textinput textInput form-control" id="id_country"> 
+                        </div> 
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label>About Me</label>
+                            <div id="div_id_about_me" class="form-group bmd-form-group"> 
+                              <label for="id_about_me" class="bmd-label-floating">
+                              Bio
+                          </label> 
+                          <textarea name="about_me" cols="40" rows="10" class="textarea form-control" id="id_about_me"></textarea> 
+                          </div> 
+                          </div>
+                        </div>
+                      </div>
+                    <button type="submit" class="btn btn-primary pull-right">Update Profile</button>
+                    <div class="clearfix"></div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card card-profile">
+                <div class="card-avatar">
+                  <a href="{{request.user.profile.image.url}}">
+                    <img class="img" width="400px" height="400px" src=" {{request.user.profile.image.url}} " />
+                  </a>
+                </div>
+                <div class="card-body">
+                  <h6 class="card-category text-gray">{{ request.user.email }}</h6>
+                  <h4 class="card-title">{{request.user.first_name}} {{request.user.last_name}}</h4>
+                  <p class="card-description">
+                    {{request.user.profile.about_me}}
+                  </p>
+                  <a href="" class="btn btn-primary btn-round">Follow</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+   {% endblock content %}

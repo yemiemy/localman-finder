@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+  Listings-single
+{% endblock title %}
+{% load static %}
+{% load humanize %}
+
+
+{% block content %}
+  
+  
+
+    <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url( {% static 'images/hero_1.jpg' %} );" data-aos="fade" data-stellar-background-ratio="0.5">
+      <div class="container">
+        <div class="row align-items-center justify-content-center text-center">
+
+          <div class="col-md-10" data-aos="fade-up" data-aos-delay="400">
+            
+            
+            <div class="row justify-content-center">
+              <div class="col-md-8 text-center">
+                <h1>{{place.name}}</h1>
+                <p class="mb-0">{{place.location}}</p>
+                {% if place.author == user %}
+                <a href="{% url 'place-update' place.id place.slug %}" class="btn btn-secondary btn-sm mb-0" >Update</a>
+                <a href="{% url 'place-delete' place.id place.slug %}" class="btn btn-danger btn-sm mb-0" >Delete</a>
+                {% endif %}
+              </div>
+            </div>
+
+            
+          </div>
+        </div>
+      </div>
+    </div>  
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8">
+
+            <div class="mb-5 border-bottom pb-5">
+              {% if place.image %}
+              <p><img src="{{place.image.url}}" alt="Image" class="img-fluid mb-4"></p>
+{% endif %}
+              <p>{{place.description|safe}} </p>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <a href="#" class="btn btn-primary btn-md text-white">Contact Us</a>
+                </div>
+              </div>
+            </div>
+
+            <h2 class="mb-5 text-primary">More Listings</h2>
+            {% for place in places %}
+            <div class="d-block d-md-flex listing-horizontal">
+
+              <a href="{% url 'category-list' place.category.name %}" class="img d-block" {% if place.image %} style="background-image: url('{{place.image.url}}')" {% endif %}>
+                <span class="category">{{place.category.name}}</span>
+              </a>
+
+              <div class="lh-content">
+                <a href="{% url 'place-list' place.id place.slug %}" class="bookmark"><span class="icon-heart"></span></a>
+                <h3><a href="{% url 'place-list' place.id place.slug %}">{{place.name}}</a></h3>
+                <p>{{place.location}}</p>
+                <p>
+                  <span class="icon-star text-warning"></span>
+                  <span class="icon-star text-warning"></span>
+                  <span class="icon-star text-warning"></span>
+                  <span class="icon-star text-warning"></span>
+                  <span class="icon-star text-secondary"></span>
+                  <span>({{page_obj.paginator.count}} Reviews)</span>
+                </p>
+
+                
+              </div>
+
+            </div>
+{% endfor %}
+
+
+
+{% include 'pagination.html' %}
+
+          </div>
+          <div class="col-lg-3 ml-auto">
+
+            <div class="mb-5">
+              <h3 class="h5 text-black mb-3">Filters</h3>
+              <form action=" {% url 'search' %} " method="GET">
+                {% csrf_token %}
+                <div class="form-group">
+                  <input type="text" name="name" placeholder="What are you looking for?" class="form-control">
+                </div>
+                <div class="form-group">
+                  <div class="select-wrap">
+                      <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
+                      <select class="form-control" name="category" id="">
+                        <option value="">All Categories</option>
+                        {% for category in categories %}
+                        <option value="{{ category }}">{{category}}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                  <!-- select-wrap, .wrap-icon -->
+                  <div class="wrap-icon">
+                    <span class="icon icon-room"></span>
+                    <input type="text" name="location" placeholder="Location" class="form-control">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <p>Radius around selected destination</p>
+                </div>
+                <div class="form-group">
+                  <input type="range" min="0" max="100" value="20" data-rangeslider>
+                </div>
+                <div class="col-lg-12 col-xl-2 ml-auto text-right">
+                  <input type="submit" class="btn text-white btn-primary" value="Search">
+                </div>
+              </form>
+            </div>
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    {% if user.is_authenticated %}
+    <div></div>
+        {% else %}
+        <div class="py-5 bg-primary">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-7 mr-auto mb-4 mb-lg-0">
+                <h2 class="mb-3 mt-0 text-white">Let's get started. Create your account</h2>
+                <p class="mb-0 text-white">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+              </div>
+              <div class="col-lg-4">
+                <p class="mb-0"><a href="{% url 'account_signup' %}" class="btn btn-outline-white text-white btn-md px-5 font-weight-bold btn-md-block">Sign Up</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+    
+ 
+{% endblock content %}
