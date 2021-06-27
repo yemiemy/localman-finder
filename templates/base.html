@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css">
 
     <link rel="stylesheet" href=" {% static 'fonts/icomoon/style.css' %} ">
 
@@ -18,7 +19,7 @@
     <link rel="stylesheet" href=" {% static 'css/owl.theme.default.min.css' %} ">
 
     <link rel="stylesheet" href=" {% static 'css/bootstrap-datepicker.css' %} ">
-
+    
     <link rel="stylesheet" href=" {% static 'fonts/flaticon/font/flaticon.css' %} ">
 
     <link rel="stylesheet" href=" {% static 'css/aos.css' %} ">
@@ -30,152 +31,127 @@
   <body>
   
   <div class="site-wrap">
+    <header>
+      <nav class="navbar navbar-expand-lg  ftco-navbar-light">
+        <div class="container-xl">
+          <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
+            <span class="flaticon flaticon-compass"></span>
+            <span class="">LocalMan <small>Directory and Listing</small></span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="icon-menu h3"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="site-menu js-clone-nav navbar-nav m-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link {% block home %}{% endblock home %}" href="{% url 'index' %}">Home</a>
+              </li>
 
-    <div class="site-mobile-menu">
-      <div class="site-mobile-menu-header">
-        <div class="site-mobile-menu-close mt-3">
-          <span class="icon-close2 js-menu-toggle"></span>
+              <li class="nav-item">
+                <a class="nav-link {% block about %}{% endblock about %}" href="{% url 'about' %}">About</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link {% block list %}{% endblock list %}" href="{% url 'list' %}">Listing</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link {% block blog %}{% endblock blog %}" href="{% url 'blog' %}">Blog</a>
+              </li>
+
+            
+              {% if user.is_authenticated %}
+                <li>
+                  <a href="{% url 'profile' %}"><span>Hi, {{ user.username|capfirst }}</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link {% block out %}{% endblock out %}" href=" {% url 'account_logout' %} ">Log out</a>
+                </li>
+              {% else %}
+                <li class="nav-item">
+                  <a class="nav-link {% block in %}{% endblock in %}" href=" {% url 'account_login' %} ">Log in</a>
+                </li>
+              {% endif %}
+              <li class="nav-item">
+                <a class="nav-link {% block con %}{% endblock con %}" href="{% url 'contact' %}">Contact</a>
+              </li>
+            </ul>
+            <p class="mb-0"><a href="#" class="btn btn-primary rounded"><span class="ion-ios-add"></span>+ Add Listing</a></p>
+            
+          </div>
         </div>
-      </div>
-      <div class="site-mobile-menu-body"></div>
-    </div>
-    
-    <header class="site-navbar" role="banner">
-
-      <div class="container">
-        <div class="row align-items-center">
-          
-          <div class="col-11 col-xl-2">
-            <h1 class="mb-0 site-logo"><a href="index.html" class="text-white h2 mb-0">LocalMan</a></h1>
-          </div>
-          <div class="col-12 col-md-10 d-none d-xl-block">
-            <nav class="site-navigation position-relative text-right" role="navigation">
-
-              <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li class=" 
-                {% block home %}
-                  
-                {% endblock home %}
-                   "><a href="{% url 'index' %}"><span>Home</span></a></li>
-                <li class=" 
-                {% block list %}
-                  
-                {% endblock list %}
-                   "><a href="{% url 'list' %}"><span>Listings</span></a></li>
-                <li class=" 
-                {% block about %}
-                  
-                {% endblock about %}
-                   "><a href="{% url 'about' %}"><span>About</span></a></li>
-                <li class=" 
-                {% block blog %}
-                  
-                {% endblock blog %}
-                   "><a href="{% url 'blog' %}"><span>Blog</span></a></li>
-                {% if user.is_authenticated %}
-                <li><a href="{% url 'profile' %}"><span>Hi, {{ user.username|capfirst }}</span></a></li>
-                <li class=" 
-                {% block out %}
-                  
-                {% endblock out %}
-                   "><a href=" {% url 'account_logout' %} "><span>Log out</span></a></li>
-                {% else %}
-                <li class=" 
-                {% block in %}
-                  
-                {% endblock in %}
-                   "><a href=" {% url 'account_login' %} "><span>Log in</span></a></li>
-                <li class=" 
-                {% block up %}
-                  
-                {% endblock up %}
-                   "><a href="{% url 'account_signup' %}"><span>Sign Up</span></a></li>
-                {% endif %}
-                <li class=" 
-                {% block con %}
-                  
-                {% endblock con %}
-                   "><a href="{% url 'contact' %}"><span>Contact</span></a></li>
-              </ul>
-            </nav>
-          </div>
-
-
-          <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
-
-          </div>
-
-        </div>
-      </div>
+      </nav>
       
     </header>
 
     {% block content %}
 
     {% endblock content %}
-
-    <footer class="site-footer">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-9">
-              <div class="row">
-                <div class="col-md-6 mb-5 mb-lg-0 col-lg-3">
-                  <h2 class="footer-heading mb-4">Quick Links</h2>
-                  <ul class="list-unstyled">
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Testimonials</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                  </ul>
-                </div>
-                <div class="col-md-6 mb-5 mb-lg-0 col-lg-3">
-                  <h2 class="footer-heading mb-4">Products</h2>
-                  <ul class="list-unstyled">
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Testimonials</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                  </ul>
-                </div>
-                <div class="col-md-6 mb-5 mb-lg-0 col-lg-3">
-                  <h2 class="footer-heading mb-4">Features</h2>
-                  <ul class="list-unstyled">
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Testimonials</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                  </ul>
-                </div>
-                <div class="col-md-6 mb-5 mb-lg-0 col-lg-3">
-                  <h2 class="footer-heading mb-4">Follow Us</h2>
-                  <a href="#" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
-                  <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
-                  <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
-                  <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
+      <footer class="ftco-footer">
+        <div class="container-xl">
+          <div class="row mb-5 pb-5 justify-content-between">
+              <div class="col-md-6 col-lg">
+                <div class="ftco-footer-widget mb-4">
+                  <h2 class="ftco-heading-2 logo d-flex">
+                  <a class="navbar-brand align-items-center" href="index.html">
+                  <span class="">Directone <small>Directory and Listing</small></span>
+                  </a>
+                  </h2>
+                  <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+                    <ul class="ftco-footer-social list-unstyled mt-2">
+                      <li><a href="#"><span class="fa fa-twitter"></span></a></li>
+                      <li><a href="#"><span class="fa fa-facebook"></span></a></li>
+                      <li><a href="#"><span class="fa fa-instagram"></span></a></li>
+                    </ul>
                 </div>
               </div>
-            </div>
-            <div class="col-lg-3">
-              <h2 class="footer-heading mb-4">Subscribe Newsletter</h2>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-              <form action="#" method="post">
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control bg-transparent" placeholder="Enter Email" aria-label="Enter Email" aria-describedby="button-addon2">
-                  <div class="input-group-append">
-                    <button class="btn btn-primary text-white" type="button" id="button-addon2">Send</button>
+
+                <div class="col-md-6 col-lg-2">
+                  <div class="ftco-footer-widget mb-4">
+                  <h2 class="ftco-heading-2">Explore</h2>
+                    <ul class="list-unstyled">
+                      <li><a href="{% url 'about' %}"><span class="fa fa-chevron-right mr-2"></span>About Us</a></li>
+                      <li><a href="{% url 'index' %}"><span class="fa fa-chevron-right mr-2"></span>Account</a></li>
+                      <li><a href="{% url 'index' %}"><span class="fa fa-chevron-right mr-2"></span>Listing</a></li>
+                    </ul>
                   </div>
                 </div>
-              </form>
-            </div>
+
+                <div class="col-md-6 col-lg-2">
+                  <div class="ftco-footer-widget mb-4">
+                  <h2 class="ftco-heading-2">Quick Links</h2>
+                    <ul class="list-unstyled">
+                      <li><a href="{% url 'index' %}"><span class="fa fa-chevron-right mr-2"></span>Terms &amp; Conditions</a></li>
+                      <li><a href="{% url 'index' %}"><span class="fa fa-chevron-right mr-2"></span>Privacy</a></li>
+                      <li><a href="{% url 'contact' %}"><span class="fa fa-chevron-right mr-2"></span>Contact Us</a></li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="col-lg-3">
+                  <h2 class="footer-heading mb-4">Subscribe Newsletter</h2>
+                  <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                  <form action="#" method="post">
+                    <div class="input-group mb-3">
+                      <input type="text" class="form-control bg-transparent" placeholder="Enter Email" aria-label="Enter Email" aria-describedby="button-addon2">
+                      <div class="input-group-append">
+                        <button class="btn btn-primary text-white" type="button" id="button-addon2">Send</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
           </div>
-          <div class="row pt-5 mt-5">
-            <div class="col-12 text-md-center text-left">
-              <p>
-              Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <a href="https://colorlib.com" target="_blank" ><i class="icon-heart text-danger" aria-hidden="true"></i></a>
-              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-              </p>
+        </div>
+
+        <div class="container-fluid px-0 py-5 bg-darken">
+            <div class="row">
+              <div class="col-12 text-md-center text-left">
+                <p>
+                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <a href="https://colorlib.com" target="_blank" ><i class="icon-heart text-danger" aria-hidden="true"></i></a>
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </p>
+              </div>
             </div>
-          </div>
         </div>
       </footer>
     </div>
@@ -192,12 +168,13 @@
     <script src=" {% static 'js/bootstrap-datepicker.min.js' %} "></script>
     <script src=" {% static 'js/aos.js' %} "></script>
     <script src=" {% static 'js/rangeslider.min.js' %} "></script>
-    
+    <script src="https://use.fontawesome.com/2421207b42.js"></script>
+    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
   
     <script src=" {% static 'js/typed.js' %} "></script>
               <script>
               var typed = new Typed('.typed-words', {
-              strings: ["Attractions"," Stores"," Hotels", " Restaurants"],
+              strings: ["Attractions","Stores"," Hotels", " Restaurants", "Clubs"],
               typeSpeed: 80,
               backSpeed: 80,
               backDelay: 4000,

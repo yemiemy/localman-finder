@@ -10,7 +10,7 @@
     
 {% block content %}
 {% load static %}
-    <div class="site-blocks-cover overlay" style="background-image: url( {% static 'images/hero_1.jpg' %} );" data-aos="fade" data-stellar-background-ratio="0.5">
+    <div class="site-blocks-cover overlay" style="background-image: url( {% static 'images/hero_1.webp' %} ); " data-aos="fade">
       <div class="container">
         <div class="row align-items-center justify-content-center text-center">
 
@@ -33,25 +33,25 @@
             <div class="row justify-content-center mb-4">
               <div class="col-md-10 text-center">
                 <h1 data-aos="fade-up">Find Nearby <span class="typed-words"></span></h1>
-                <p data-aos="fade-up" class=" w-75 mx-auto">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro provident corporis consequuntur et totam.</p>
+                <p data-aos="fade-up" class=" w-75 mx-auto mt-3">Find and Rate great places and vendors to get you what you need, and help help improve vendors standards all around you.</p>
               </div>
             </div>
 
             <div class="form-search-wrap p-2" data-aos="fade-up" data-aos-delay="200">
               <form action=" {% url 'search' %} " method="GET">
                 {% csrf_token %}
-                <div class="row align-items-center">
-                  <div class="col-lg-12 col-xl-4 no-sm-border border-right">
+                <div class="row align-items-center container-fluid">
+                  <div class="col-lg-12 col-xl-5 no-sm-border border-right">
                     <input type="text" name="name" class="form-control" placeholder="What are you looking for?" required>
                   </div>
-                  <div class="col-lg-12 col-xl-3 no-sm-border border-right">
+                  <!-- <div class="col-lg-12 col-xl-3 no-sm-border border-right">
                     <div class="wrap-icon">
                       <span class="icon icon-room"></span>
                       <input type="text" name="location" class="form-control" placeholder="Location" required>
                     </div>
                     
-                  </div>
-                  <div class="col-lg-12 col-xl-3">
+                  </div> -->
+                  <div class="col-lg-12 col-xl-4 border-right no-sm-border">
                     <div class="select-wrap">
                       <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
                       <select class="form-control" name="category" id="" required>
@@ -61,7 +61,7 @@
                       </select>
                     </div>
                   </div>
-                  <div class="col-lg-12 col-xl-2 ml-auto text-right">
+                  <div class="col-lg-12 col-xl-2 mx-auto text-right">
                     <input type="submit" class="btn text-white btn-primary" value="Search">
                   </div>
                   
@@ -74,37 +74,113 @@
       </div>
     </div>  
 
-    
-    
+    <section class="ftco-section ftco-no-pt ftco-no-pb bg-light">
+      <div class="container">
+        <div class="row g-0">
+          <div class="col-md-12 services-wrap">
+            
+            <div class="row g-3">
+              
+              <div class="col-md-4 col-lg-2 text-center d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
+                <a href="/places/category/Hotels" class="services">
+                  <div class="icon"><span class="flaticon-cutlery"></span></div>
+                  <div class="text">
+                    <h2>Restaurant</h2>
+                    <p class="list"><span>103</span></p>
+                  </div>
+                </a>
+              </div>
+              <div class="col-md-4 col-lg-2 text-center d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+                <a href="#" class="services">
+                  <div class="icon"><span class="flaticon-hotel"></span></div>
+                  <div class="text">
+                    <h2>Hotels</h2>
+                    <p class="list"><span>40</span></p>
+                  </div>
+                </a>
+              </div>
+              <div class="col-md-4 col-lg-2 text-center d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
+                <a href="#" class="services">
+                  <div class="icon"><span class="flaticon-restaurant"></span></div>
+                  <div class="text">
+                    <h2>Shopping</h2>
+                    <p class="list"><span>100</span></p>
+                  </div>
+                </a>
+              </div>
+              <div class="col-md-4 col-lg-2 text-center d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
+                <a href="#" class="services">
+                  <div class="icon"><span class="flaticon-flower"></span></div>
+                  <div class="text">
+                    <h2>Beauty</h2>
+                    <p class="list"><span>36</span></p>
+                  </div>
+                </a>
+              </div>
+              <div class="col-md-4 col-lg-2 text-center d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
+                <a href="#" class="services">
+                  <div class="icon"><span class="flaticon-bike"></span></div>
+                  <div class="text">
+                    <h2>Fitness</h2>
+                    <p class="list"><span>30</span></p>
+                  </div>
+                </a>
+              </div>
+              <div class="col-md-4 col-lg-2 text-center d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
+                <a href="#" class="services">
+                  <div class="icon"><span class="flaticon-microphone"></span></div>
+                  <div class="text">
+                    <h2>Bar &amp; Club</h2>
+                    <p class="list"><span>12</span></p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-5 justify-content-center text-center pb-5">
+            <div class="col-md-4"><a href="{% url 'index' %}" class="btn btn-block btn-outline-primary btn-md px-5">View All Categories</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
       
-    
-    <div class="site-section" data-aos="fade">
+    <div class="site-section bg-light" data-aos="fade-up">
       <div class="container">
         <div class="row justify-content-center mb-5">
           <div class="col-md-7 text-center border-primary">
-            <h2 class="font-weight-light text-primary">Most Visited Places</h2>
-            <p class="color-black-opacity-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+            <h2 class="font-weight-light text-primary">Popular Places</h2>
+            <p class="color-black-opacity-5">Take a look at our highest rated stores, try them out, and leave some feedback.</p>
           </div>
         </div>
 
         <div class="row">
           {% for place in places %}
-          <div class="col-md-6 mb-4 mb-lg-4 col-lg-4">
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
             
-            <div class="listing-item">
+            <div class="listing-wrap">
               {% if place.image %}
-              <div class="listing-image">
-                <img src=" {{place.image.url}}" alt="bg" class="img-fluid">
-              </div>
+                <a href="{{place.image.url}}" class="img img-property d-flex align-items-center justify-content-center glightbox" style="background-image:url('{{place.image.url}}')">
+                  <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-search"></span></div>
+                </a>
               {% endif %}
-              <div class="listing-item-content">
-                <a href="{% url 'place-list' place.id place.slug %}" class="bookmark" data-toggle="tooltip" data-placement="left" title="Bookmark"><span class="icon-heart"></span></a>
-                <a class="px-3 mb-3 category" href="/places/category/{{place.category}}">{{place.category}}</a>
-                <h2 class="mb-1"><a href="{% url 'place-list' place.id place.slug %}">{{place.name}}</a></h2>
-                <span class="address">{{place.location}}</span>
+              <div class="text text-center">
+                <div class="icon d-flex align-items-center justify-content-center">
+                  <span class="flaticon-food-and-drink"></span>
+                </div>
+                <span class="subheading">{{place.category}}</span>
+                <h3><a href="{% url 'place-list' place.id place.slug %}">{{place.name}}</a></h3>
+                <ul class="">
+                  <li><p><span class="ion-ios-pin"></span> {{place.location}}</p></li>
+                  <!-- <li><p><span class="fa fa-phone"></span> +00 123 456 7890</p></li> -->
+                </ul>
+                <div class="info-wrap2 d-flex align-items-center">
+                  <p class="review"><span class="rev">Review <small>5.0/5.0</small></span> <span class="ico ion-ios-star"></span><small>(100)</small></p>
+                  <p class="heart">
+                    <a href="#" class="d-flex align-items-center justify-content-center"><span class="ion-ios-heart-empty"></span></a>
+                  </p>
+                </div>
               </div>
             </div>
-
           </div>
           {% endfor %}
         </div>
@@ -112,131 +188,13 @@
     </div>
 
     {% include 'pagination.html' %}
-    
-    <div class="site-section">
-      <div class="container">
-        <div class="row justify-content-center mb-5">
-          <div class="col-md-7 text-center border-primary">
-            <h2 class="font-weight-light text-primary">Popular Categories</h2>
-            <p class="color-black-opacity-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-          </div>
-        </div>
-
-        <div class="row align-items-stretch">
-          <div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-            <a href="/places/category/Hotels" class="popular-category h-100">
-              <span class="icon mb-3"><span class="flaticon-hotel"></span></span>
-              <span class="caption mb-2 d-block">Hotels</span>
-              <span class="number">4,89</span>
-            </a>
-          </div>
-          <div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-            <a href="/places/category/Events" class="popular-category h-100">
-              <span class="icon mb-3"><span class="flaticon-microphone"></span></span>
-              <span class="caption mb-2 d-block">Events</span>
-              <span class="number">482</span>
-            </a>
-          </div>
-          <div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-            <a href="/places/category/Spa" class="popular-category h-100">
-              <span class="icon mb-3"><span class="flaticon-flower"></span></span>
-              <span class="caption mb-2 d-block">Spa</span>
-              <span class="number">194</span>
-            </a>
-          </div>
-          <div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-            <a href="/places/category/Stores" class="popular-category h-100">
-              <span class="icon mb-3"><span class="flaticon-restaurant"></span></span>
-              <span class="caption mb-2 d-block">Stores</span>
-              <span class="number">1,472</span>
-            </a>
-          </div>
-          <div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-            <a href="/places/category/Restaurants" class="popular-category h-100">
-              <span class="icon mb-3"><span class="flaticon-cutlery"></span></span>
-              <span class="caption mb-2 d-block">Restaurants</span>
-              <span class="number">439</span>
-            </a>
-          </div>
-          <div class="col-6 col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-            <a href="/places/category/Others" class="popular-category h-100">
-              <span class="icon mb-3"><span class="flaticon-bike"></span></span>
-              <span class="caption mb-2 d-block">Other</span>
-              <span class="number">692</span>
-            </a>
-          </div>
-        </div>
-
-        <div class="row mt-5 justify-content-center tex-center">
-          <div class="col-md-4"><a href="{% url 'index' %}" class="btn btn-block btn-outline-primary btn-md px-5">View All Categories</a></div>
-        </div>
-      </div>
-    </div>
-    
-    
-    <div class="site-section">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 mb-5">
-            <img src=" {% static 'images/img_1.jpg' %}" alt="img" class="img-fluid rounded">
-          </div>
-          <div class="col-md-5 ml-auto">
-            <h2 class="text-primary mb-3">FAQs</h2>
-            <div class="row mt-4">
-              <div class="col-12">
-                <div class="border p-3 rounded mb-2">
-                  <a data-toggle="collapse" href="#collapse-1" role="button" aria-expanded="false" aria-controls="collapse-1" class="accordion-item h5 d-block mb-0">How to list my item?</a>
-
-                  <div class="collapse" id="collapse-1">
-                    <div class="pt-2">
-                      <p class="mb-0">Create an account with us today for free. Then, you can follow the steps to add your business or store.</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="border p-3 rounded mb-2">
-                  <a data-toggle="collapse" href="#collapse-4" role="button" aria-expanded="false" aria-controls="collapse-4" class="accordion-item h5 d-block mb-0">Is this available in my country?</a>
-
-                  <div class="collapse" id="collapse-4">
-                    <div class="pt-2">
-                      <p class="mb-0">It is available in Lagos, Nigeria.</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="border p-3 rounded mb-2">
-                  <a data-toggle="collapse" href="#collapse-2" role="button" aria-expanded="false" aria-controls="collapse-2" class="accordion-item h5 d-block mb-0">Is it free?</a>
-
-                  <div class="collapse" id="collapse-2">
-                    <div class="pt-2">
-                      <p class="mb-0">It is very free.</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="border p-3 rounded mb-2">
-                  <a data-toggle="collapse" href="#collapse-3" role="button" aria-expanded="false" aria-controls="collapse-3" class="accordion-item h5 d-block mb-0">How the system works?</a>
-
-                  <div class="collapse" id="collapse-3">
-                    <div class="pt-2">
-                      <p class="mb-0">Decide on what to do. Use our search bar at the top of the page to find what you want. Explore amazing places.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <div class="site-section">
       <div class="container">
         <div class="row justify-content-center mb-5">
           <div class="col-md-7 text-center border-primary">
             <h2 class="font-weight-light text-primary">How It Works</h2>
-            <p class="color-black-opacity-5">It is very easy. Just follow the steps below...</p>
+            <p class="color-black-opacity-5">It's very easy. Just follow the steps below...</p>
           </div>
         </div>
 
@@ -265,7 +223,7 @@
                 <img src=" {% static 'images/step-3.svg' %} " alt="img" class="img-fluid">
               </div>
               <span class="number">3</span>
-              <h3>Explore Amazing Places</h3>
+              <h3>Explore and rate Amazing Places</h3>
               </div>
           </div>
         </div>
@@ -302,8 +260,6 @@
       </div>
     </div>
 
-
-
     <div class="site-section">
       <div class="container">
         <div class="row justify-content-center mb-5">
@@ -338,8 +294,8 @@
           <div class="container">
             <div class="row">
               <div class="col-lg-7 mr-auto mb-4 mb-lg-0">
-                <h2 class="mb-3 mt-0 text-white">Let's get started. Create your account</h2>
-                <p class="mb-0 text-white">Let your business get the audience it needs.</p>
+                <h2 class="mb-3 mt-0 text-white">Let's get started. Create an account</h2>
+                <p class="mb-0 text-white">Create an Account so you can add other stores near you and begin building your Local Man reputation</p>
               </div>
               <div class="col-lg-4">
                 <p class="mb-0"><a href="{% url 'account_signup' %}" class="btn btn-outline-white text-white btn-md px-5 font-weight-bold btn-md-block">Sign Up</a></p>
